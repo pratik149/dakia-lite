@@ -1,6 +1,6 @@
 <template>
   <svg
-    class="h-8 -mt-2"
+    class="-mt-2 h-8"
     data-v-235bc6c6=""
     viewBox="0 0 200 51"
     version="1.1"
