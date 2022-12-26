@@ -36,7 +36,7 @@ class SubscriberController extends Controller
 
 		$this->validate($request, [
 			'name' => ['required', 'string'],
-			'email' => ['required', 'email'],
+			'email' => ['required', 'email:rfc,dns'],
 			// 'state' => ['required', [new Enum(SubscriberState::class)]],
 			'fields' => ['present', 'array'],
 			'fields.*.id' => ['required', 'integer'],
@@ -115,10 +115,13 @@ class SubscriberController extends Controller
 		$success = false;
 
 		$this->validate($request, [
-			'name' => 'required',
-			'email' => 'required',
-			'state' => 'required',
-			'fields' => 'array',
+			'name' => ['required', 'string'],
+			'email' => ['required', 'email:rfc,dns'],
+			// 'state' => ['required', [new Enum(SubscriberState::class)]],
+			'fields' => ['present', 'array'],
+			'fields.*.id' => ['required', 'integer'],
+			'fields.*.title' => ['required', 'string'],
+			// 'fields.*.type' => ['required', [new Enum(FieldType::class)]],
 		]);
 
 		$subscriber = Subscriber::findorFail($id);
