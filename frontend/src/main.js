@@ -11,7 +11,7 @@ const app = createApp(App);
 app.use(createPinia());
 app.use(router);
 app.use(axios, {
-  baseUrl: "http://projects.pratikrane.com/api",
+  baseUrl: "https://projects.pratikrane.com/api",
 });
 
 app.mount("#app");
