@@ -18,10 +18,12 @@ class SubscriberController extends Controller
 	 */
 	public function index()
 	{
-		return Subscriber::select('id', 'name', 'email', 'state', 'created_at')
+		$subscribers = Subscriber::select('id', 'name', 'email', 'state', 'created_at')
 			->with('fields:id,title,type')
 			->orderBy('created_at', 'DESC')
 			->paginate(10);
+
+		return $subscribers;
 	}
 
 	/**
@@ -32,23 +34,23 @@ class SubscriberController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		$success = false;
-
 		$this->validate($request, [
-			'name' => ['required', 'string'],
-			'email' => ['required', 'email:rfc,dns'],
+			'name' => ['required', 'string', 'max:255'],
+			'email' => ['required', 'email:rfc,dns', 'max:255'],
 			'state' => ['required', new Enum(SubscriberState::class)],
-			'fields' => ['present', 'array'],
+			'fields' => ['required', 'array'],
 			'fields.*.id' => ['required', 'integer'],
 			'fields.*.title' => ['required', 'string'],
 			'fields.*.type' => ['required', new Enum(FieldType::class)],
+			'fields.*.value' => ['present'],
 		]);
 
 		$subscriber = new Subscriber;
 		$subscriber->name = $request->input('name');
 		$subscriber->email = $request->input('email');
-		$subscriber->state = $request->enum('state', SubscriberState::class);;
+		$subscriber->state = $request->enum('state', SubscriberState::class);
 
+		$success = false;
 		if ($subscriber->save()) {
 			$fieldValuesToAttach = [];
 			$fields = $request->input('fields');
@@ -60,6 +62,7 @@ class SubscriberController extends Controller
 					'date_value' => null,
 					'boolean_value' => null,
 				];
+
 				if ($field['type'] === FieldType::Text->value) {
 					$fieldValues['text_value'] = $field['value'];
 				} else if ($field['type'] === FieldType::Number->value) {
@@ -69,6 +72,7 @@ class SubscriberController extends Controller
 				} else if ($field['type'] === FieldType::Boolean->value) {
 					$fieldValues['boolean_value'] = $field['value'];
 				}
+
 				$fieldValuesToAttach[$field['id']] =  $fieldValues;
 			}
 
@@ -98,9 +102,11 @@ class SubscriberController extends Controller
 	 */
 	public function show($id)
 	{
-		return Subscriber::select('id', 'name', 'email', 'state', 'created_at')
+		$subscriber = Subscriber::select('id', 'name', 'email', 'state', 'created_at')
 			->with('fields:id,title,type')
 			->findOrFail($id);
+
+		return $subscriber;
 	}
 
 	/**
@@ -112,23 +118,23 @@ class SubscriberController extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
-		$success = false;
-
 		$this->validate($request, [
-			'name' => ['required', 'string'],
-			'email' => ['required', 'email:rfc,dns'],
+			'name' => ['required', 'string', 'max:255'],
+			'email' => ['required', 'email:rfc,dns', 'max:255'],
 			'state' => ['required', new Enum(SubscriberState::class)],
-			'fields' => ['present', 'array'],
+			'fields' => ['required', 'array'],
 			'fields.*.id' => ['required', 'integer'],
 			'fields.*.title' => ['required', 'string'],
 			'fields.*.type' => ['required', new Enum(FieldType::class)],
+			'fields.*.value' => ['present'],
 		]);
 
-		$subscriber = Subscriber::findorFail($id);
+		$subscriber = Subscriber::findOrFail($id);
 		$subscriber->name = $request->input('name');
 		$subscriber->email = $request->input('email');
-		$subscriber->state = $request->input('state');
+		$subscriber->state = $request->enum('state', SubscriberState::class);
 
+		$success = false;
 		if ($subscriber->save()) {
 			$fieldValuesToAttach = [];
 			$fields = $request->input('fields');
@@ -140,6 +146,7 @@ class SubscriberController extends Controller
 					'date_value' => null,
 					'boolean_value' => null,
 				];
+
 				if ($field['type'] === FieldType::Text->value) {
 					$fieldValues['text_value'] = $field['value'];
 				} else if ($field['type'] === FieldType::Number->value) {
@@ -149,6 +156,7 @@ class SubscriberController extends Controller
 				} else if ($field['type'] === FieldType::Boolean->value) {
 					$fieldValues['boolean_value'] = $field['value'];
 				}
+
 				$fieldValuesToAttach[$field['id']] =  $fieldValues;
 			}
 
@@ -169,6 +177,7 @@ class SubscriberController extends Controller
 			'data' => $subscriber,
 		];
 	}
+
 	/**
 	 * Remove the specified resource from storage.
 	 *
@@ -177,7 +186,7 @@ class SubscriberController extends Controller
 	 */
 	public function destroy($id)
 	{
-		$subscriber = Subscriber::findorFail($id); //searching for object in database using ID
+		$subscriber = Subscriber::findOrFail($id); //searching for object in database using ID
 
 		if (!$subscriber->delete()) {
 			return [
