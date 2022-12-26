@@ -228,8 +228,6 @@ async function addSubscriber() {
     fields: subscriber.fields,
   };
 
-  console.log(payload);
-
   const apiUrl = props.isEdit
     ? `https://projects.pratikrane.com/api/subscribers/${props.subscriberInitialDetails.id}`
     : "https://projects.pratikrane.com/api/subscribers";
@@ -241,14 +239,16 @@ async function addSubscriber() {
   })
     .then((response) => {
       if (response.data.success) {
-        console.log("Submitted successfully");
+        emit("onSubscriberCreated", props.isEdit ? props.subscriberInitialDetails.id : null);
+        emit("closeModal");
       }
     })
     .catch((e) => {
-      console.log(e);
+      if (e.response.status === 422) {
+        error.value = e.response.data.message;
+      } else {
+        console.log(e);
+      }
     });
-
-  emit("onSubscriberCreated", props.isEdit ? props.subscriberInitialDetails.id : null);
-  emit("closeModal");
 }
 </script>
