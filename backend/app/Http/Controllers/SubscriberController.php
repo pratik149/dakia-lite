@@ -37,17 +37,17 @@ class SubscriberController extends Controller
 		$this->validate($request, [
 			'name' => ['required', 'string'],
 			'email' => ['required', 'email:rfc,dns'],
-			// 'state' => ['required', [new Enum(SubscriberState::class)]],
+			'state' => ['required', new Enum(SubscriberState::class)],
 			'fields' => ['present', 'array'],
 			'fields.*.id' => ['required', 'integer'],
 			'fields.*.title' => ['required', 'string'],
-			// 'fields.*.type' => ['required', [new Enum(FieldType::class)]],
+			'fields.*.type' => ['required', new Enum(FieldType::class)],
 		]);
 
 		$subscriber = new Subscriber;
 		$subscriber->name = $request->input('name');
 		$subscriber->email = $request->input('email');
-		$subscriber->state = $request->input('state');
+		$subscriber->state = $request->enum('state', SubscriberState::class);;
 
 		if ($subscriber->save()) {
 			$fieldValuesToAttach = [];
@@ -117,11 +117,11 @@ class SubscriberController extends Controller
 		$this->validate($request, [
 			'name' => ['required', 'string'],
 			'email' => ['required', 'email:rfc,dns'],
-			// 'state' => ['required', [new Enum(SubscriberState::class)]],
+			'state' => ['required', new Enum(SubscriberState::class)],
 			'fields' => ['present', 'array'],
 			'fields.*.id' => ['required', 'integer'],
 			'fields.*.title' => ['required', 'string'],
-			// 'fields.*.type' => ['required', [new Enum(FieldType::class)]],
+			'fields.*.type' => ['required', new Enum(FieldType::class)],
 		]);
 
 		$subscriber = Subscriber::findorFail($id);
