@@ -6,17 +6,16 @@ Dakia (Hindi word for postman/mailer, pronounced `/daa-ki-yaa/`) is a tiny featu
 
 - [Live Demo](#live-demo)
 - [Tech Stack](#tech-stack)
+- [Features](#features)
 - [How to Install and Run the Project](#how-to-install-and-run-the-project)
 
----
 
-#### Live Demo
+### Live Demo
 - Frontend: https://dakia-lite.vercel.app/
 - Backend: https://projects.pratikrane.com/api
 
-----
 
-#### Tech Stack
+### Tech Stack
 
 1. Backend
    - Laravel 9
@@ -28,9 +27,17 @@ Dakia (Hindi word for postman/mailer, pronounced `/daa-ki-yaa/`) is a tiny featu
    - Tailwind CSS
    - Vercel
 
----
 
-#### How to Install and Run the Project
+### Features
+- View Subscriber List
+- View Subscriber Details
+- Create Subscriber
+- Edit Subscriber
+- Delete Subscriber
+- Pagination
+
+
+### How to Install and Run the Project
 
 **Note:** Minimum **PHP 8.1** and **Node 18.0** is required to run this project.
 
@@ -44,6 +51,6 @@ Dakia (Hindi word for postman/mailer, pronounced `/daa-ki-yaa/`) is a tiny featu
 7. `php artisan serve`
 
 ##### Frontend
-1. `cd dakia-lite/frontend`
+1. `cd dakia-lite/frontend/`
 2. `npm i`
 3. `npm run dev`
