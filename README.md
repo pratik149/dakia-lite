@@ -3,10 +3,10 @@
 Dakia (Hindi word for postman/mailer, pronounced `/daa-ki-yaa/`) is a tiny feature clone of MailerLite built using Laravel 9, Vue3 and TailwindCSS.
 
 ## Table of Contents
-1. [Live Demo](#example)
-2. [Tech Stack](#example2)
-3. [How to Install and Run the Project](#third-example)
-4. [Screenshots](#fourth-examplehttpwwwfourthexamplecom)
+
+- [Live Demo](#live-demo)
+- [Tech Stack](#tech-stack)
+- [How to Install and Run the Project](#how-to-install-and-run-the-project)
 
 ---
 
