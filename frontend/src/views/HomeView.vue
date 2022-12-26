@@ -7,8 +7,8 @@ import { RouterLink } from "vue-router";
     <div class="max-w-md text-center">
       <h1 class="text-2xl font-semibold text-gray-700">Welcome to <span class="text-green-500"> DakiaLite </span></h1>
       <p class="mt-2 text-gray-500">
-        Digital marketing tools to grow your audience faster and drive revenue smarter. Backed by 24/7 award-winning
-        support.
+        Dakia (Hindi word for postman/mailer, pronounced /daa-ki-yaa/) is a tiny feature clone of MailerLite built using
+        Laravel 9, Vue3 and TailwindCSS.
       </p>
     </div>
 
