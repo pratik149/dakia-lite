@@ -7,7 +7,7 @@ Dakia (Hindi word for postman/mailer, pronounced `/daa-ki-yaa/`) is a tiny featu
 - [Live Demo](#live-demo)
 - [Tech Stack](#tech-stack)
 - [Features](#features)
-- [How to Install and Run the Project](#how-to-install-and-run-the-project)
+- [How to Setup and Run the Project](#how-to-setup-and-run-the-project)
 
 
 ### Live Demo
@@ -37,7 +37,7 @@ Dakia (Hindi word for postman/mailer, pronounced `/daa-ki-yaa/`) is a tiny featu
 - Pagination
 
 
-### How to Install and Run the Project
+### How to Setup and Run the Project
 
 **Note:** Minimum **PHP 8.1** and **Node 18.0** is required to run this project.
 
