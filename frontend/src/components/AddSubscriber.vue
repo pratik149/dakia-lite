@@ -231,8 +231,8 @@ async function addSubscriber() {
   console.log(payload);
 
   const apiUrl = props.isEdit
-    ? `http://localhost:8000/api/subscribers/${props.subscriberInitialDetails.id}`
-    : "http://localhost:8000/api/subscribers";
+    ? `http://projects.pratikrane.com/api/subscribers/${props.subscriberInitialDetails.id}`
+    : "http://projects.pratikrane.com/api/subscribers";
 
   await axios({
     method: props.isEdit ? "put" : "post",
