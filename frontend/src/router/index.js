@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import SubscribersView from "../views/SubscribersView.vue";
+import SubscriberView from "../views/SubscriberView.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -12,12 +14,12 @@ const router = createRouter({
     {
       path: "/subscribers",
       name: "subscribers",
-      component: () => import("../views/SubscribersView.vue"),
+      component: SubscribersView,
     },
     {
       path: "/subscribers/:id",
       name: "subscriber-details",
-      component: () => import("../views/SubscriberView.vue"),
+      component: SubscriberView,
     },
   ],
 });
