@@ -6,12 +6,14 @@ import router from "./router";
 import axios from "./plugins/axios";
 import "./assets/style.css";
 
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+
 const app = createApp(App);
 
 app.use(createPinia());
 app.use(router);
 app.use(axios, {
-  baseUrl: "https://projects.pratikrane.com/api",
+  baseUrl: apiBaseUrl,
 });
 
 app.mount("#app");

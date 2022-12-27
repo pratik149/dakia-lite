@@ -155,6 +155,7 @@
 import axios from "axios";
 import { ref, reactive } from "vue";
 import { TransitionRoot, TransitionChild, Dialog, DialogOverlay, DialogTitle } from "@headlessui/vue";
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
 const props = defineProps({
   fields: {
@@ -229,8 +230,8 @@ async function addSubscriber() {
   };
 
   const apiUrl = props.isEdit
-    ? `https://projects.pratikrane.com/api/subscribers/${props.subscriberInitialDetails.id}`
-    : "https://projects.pratikrane.com/api/subscribers";
+    ? `${apiBaseUrl}/api/subscribers/${props.subscriberInitialDetails.id}`
+    : `${apiBaseUrl}/api/subscribers`;
 
   await axios({
     method: props.isEdit ? "put" : "post",
