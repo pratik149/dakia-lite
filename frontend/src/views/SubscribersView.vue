@@ -2,7 +2,7 @@
   <main class="bg-gray-100">
     <div class="mx-auto max-w-8xl px-4 py-8">
       <div class="mb-8 flex justify-between">
-        <h1 class="text-3xl font-semibold">Subsribers</h1>
+        <h1 class="text-3xl font-semibold">Subscribers</h1>
         <button
           @click="toggleAddSubscriberModal"
           class="rounded bg-green-500 px-6 py-2.5 font-medium text-white transition hover:bg-green-600"

@@ -1,66 +1,567 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# API Documentation
 
-## About Laravel
+## Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+#### [Fields](#fields)
+- [List All Fields (GET)](#list-all-fields)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+#### [Subscribers](#subscribers)
+- [List All Subscribers (GET)](#list-all-subscribers)
+- [Create New Subscriber (POST)](#create-new-subscriber)
+- [View Subscriber (GET)](#view-subscriber)
+- [Update Subscriber Details (PUT)](#update-subscriber-details)
+- [Delete Subscriber (DELETE)](#delete-subscriber)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# Fields
+## List All Fields
+#### [GET] [/fields]
++ Response 200 (application/json)
 
-## Learning Laravel
+```json
+[
+  {
+    "id": 1,
+    "title": "phone",
+    "type": "text"
+  },
+  {
+    "id": 2,
+    "title": "company",
+    "type": "text"
+  },
+  {
+    "id": 3,
+    "title": "country",
+    "type": "text"
+  },
+  {
+    "id": 4,
+    "title": "zip",
+    "type": "number"
+  },
+  {
+    "id": 5,
+    "title": "birthdate",
+    "type": "date"
+  }
+]
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# Subscribers
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## List All Subscribers
+#### [GET] [/subscribers]
++ Response 200 (application/json)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```json
+{
+  "current_page": 1,
+  "data": [
+    {
+      "id": 93,
+      "name": "Creola Bahringer",
+      "email": "okunde@example.com",
+      "state": "active",
+      "created_at": "2022-12-26T09:24:46.000000Z",
+      "fields": [
+        {
+          "id": 1,
+          "title": "phone",
+          "type": "text",
+          "pivot": {
+            "subscriber_id": 93,
+            "field_id": 1,
+            "text_value": "D8o9b1Mxeb",
+            "number_value": null,
+            "date_value": null,
+            "boolean_value": null,
+            "created_at": "2022-12-26T09:24:47.000000Z",
+            "updated_at": "2022-12-26T09:24:47.000000Z"
+          }
+        },
+        {
+          "id": 3,
+          "title": "country",
+          "type": "text",
+          "pivot": {
+            "subscriber_id": 93,
+            "field_id": 3,
+            "text_value": "gQxIQoUVDE",
+            "number_value": null,
+            "date_value": null,
+            "boolean_value": null,
+            "created_at": "2022-12-26T09:24:47.000000Z",
+            "updated_at": "2022-12-26T09:24:47.000000Z"
+          }
+        },
+        {
+          "id": 4,
+          "title": "zip",
+          "type": "number",
+          "pivot": {
+            "subscriber_id": 93,
+            "field_id": 4,
+            "text_value": null,
+            "number_value": 86630978,
+            "date_value": null,
+            "boolean_value": null,
+            "created_at": "2022-12-26T09:24:47.000000Z",
+            "updated_at": "2022-12-26T09:24:47.000000Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": 94,
+      "name": "Major Blanda II",
+      "email": "liam09@example.com",
+      "state": "junk",
+      "created_at": "2022-12-26T09:24:46.000000Z",
+      "fields": [
+        {
+          "id": 4,
+          "title": "zip",
+          "type": "number",
+          "pivot": {
+            "subscriber_id": 94,
+            "field_id": 4,
+            "text_value": null,
+            "number_value": 71429734,
+            "date_value": null,
+            "boolean_value": null,
+            "created_at": "2022-12-26T09:24:47.000000Z",
+            "updated_at": "2022-12-26T09:24:47.000000Z"
+          }
+        },
+        {
+          "id": 5,
+          "title": "birthdate",
+          "type": "date",
+          "pivot": {
+            "subscriber_id": 94,
+            "field_id": 5,
+            "text_value": null,
+            "number_value": null,
+            "date_value": "1996-10-12T00:00:00.000000Z",
+            "boolean_value": null,
+            "created_at": "2022-12-26T09:24:47.000000Z",
+            "updated_at": "2022-12-26T09:24:47.000000Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": 95,
+      "name": "Orlo Bogan",
+      "email": "ariel.corwin@example.net",
+      "state": "unconfirmed",
+      "created_at": "2022-12-26T09:24:46.000000Z",
+      "fields": [
+        {
+          "id": 1,
+          "title": "phone",
+          "type": "text",
+          "pivot": {
+            "subscriber_id": 95,
+            "field_id": 1,
+            "text_value": "ZeUaCPinfd",
+            "number_value": null,
+            "date_value": null,
+            "boolean_value": null,
+            "created_at": "2022-12-26T09:24:47.000000Z",
+            "updated_at": "2022-12-26T09:24:47.000000Z"
+          }
+        },
+        {
+          "id": 4,
+          "title": "zip",
+          "type": "number",
+          "pivot": {
+            "subscriber_id": 95,
+            "field_id": 4,
+            "text_value": null,
+            "number_value": 48581689,
+            "date_value": null,
+            "boolean_value": null,
+            "created_at": "2022-12-26T09:24:47.000000Z",
+            "updated_at": "2022-12-26T09:24:47.000000Z"
+          }
+        },
+        {
+          "id": 5,
+          "title": "birthdate",
+          "type": "date",
+          "pivot": {
+            "subscriber_id": 95,
+            "field_id": 5,
+            "text_value": null,
+            "number_value": null,
+            "date_value": "1986-10-26T00:00:00.000000Z",
+            "boolean_value": null,
+            "created_at": "2022-12-26T09:24:47.000000Z",
+            "updated_at": "2022-12-26T09:24:47.000000Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": 96,
+      "name": "Emmitt Hills",
+      "email": "ygorczany@example.org",
+      "state": "bounced",
+      "created_at": "2022-12-26T09:24:46.000000Z",
+      "fields": [
+        {
+          "id": 1,
+          "title": "phone",
+          "type": "text",
+          "pivot": {
+            "subscriber_id": 96,
+            "field_id": 1,
+            "text_value": "caWR9ndULD",
+            "number_value": null,
+            "date_value": null,
+            "boolean_value": null,
+            "created_at": "2022-12-26T09:24:47.000000Z",
+            "updated_at": "2022-12-26T09:24:47.000000Z"
+          }
+        },
+        {
+          "id": 4,
+          "title": "zip",
+          "type": "number",
+          "pivot": {
+            "subscriber_id": 96,
+            "field_id": 4,
+            "text_value": null,
+            "number_value": 60563400,
+            "date_value": null,
+            "boolean_value": null,
+            "created_at": "2022-12-26T09:24:47.000000Z",
+            "updated_at": "2022-12-26T09:24:47.000000Z"
+          }
+        },
+        {
+          "id": 5,
+          "title": "birthdate",
+          "type": "date",
+          "pivot": {
+            "subscriber_id": 96,
+            "field_id": 5,
+            "text_value": null,
+            "number_value": null,
+            "date_value": "1992-10-15T00:00:00.000000Z",
+            "boolean_value": null,
+            "created_at": "2022-12-26T09:24:47.000000Z",
+            "updated_at": "2022-12-26T09:24:47.000000Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": 97,
+      "name": "Candida Morissette Mob",
+      "email": "renner.tremayne@yahoo.com",
+      "state": "junk",
+      "created_at": "2022-12-26T09:24:46.000000Z",
+      "fields": [
+        {
+          "id": 1,
+          "title": "phone",
+          "type": "text",
+          "pivot": {
+            "subscriber_id": 97,
+            "field_id": 1,
+            "text_value": "j7a6ir7wpj",
+            "number_value": null,
+            "date_value": null,
+            "boolean_value": null,
+            "created_at": "2022-12-26T09:24:47.000000Z",
+            "updated_at": "2022-12-26T09:24:47.000000Z"
+          }
+        },
+        {
+          "id": 2,
+          "title": "company",
+          "type": "text",
+          "pivot": {
+            "subscriber_id": 97,
+            "field_id": 2,
+            "text_value": "xNnd1YJbra",
+            "number_value": null,
+            "date_value": null,
+            "boolean_value": null,
+            "created_at": "2022-12-26T09:24:47.000000Z",
+            "updated_at": "2022-12-26T09:24:47.000000Z"
+          }
+        },
+        {
+          "id": 4,
+          "title": "zip",
+          "type": "number",
+          "pivot": {
+            "subscriber_id": 97,
+            "field_id": 4,
+            "text_value": null,
+            "number_value": 79405285,
+            "date_value": null,
+            "boolean_value": null,
+            "created_at": "2022-12-26T09:24:47.000000Z",
+            "updated_at": "2022-12-26T09:24:47.000000Z"
+          }
+        },
+        {
+          "id": 5,
+          "title": "birthdate",
+          "type": "date",
+          "pivot": {
+            "subscriber_id": 97,
+            "field_id": 5,
+            "text_value": null,
+            "number_value": null,
+            "date_value": null,
+            "boolean_value": null,
+            "created_at": "2022-12-26T09:24:47.000000Z",
+            "updated_at": "2022-12-26T09:31:21.000000Z"
+          }
+        },
+        {
+          "id": 3,
+          "title": "country",
+          "type": "text",
+          "pivot": {
+            "subscriber_id": 97,
+            "field_id": 3,
+            "text_value": null,
+            "number_value": null,
+            "date_value": null,
+            "boolean_value": null,
+            "created_at": "2022-12-26T09:31:21.000000Z",
+            "updated_at": "2022-12-26T09:31:21.000000Z"
+          }
+        }
+      ]
+    },
+  ],
+  "first_page_url": "https://projects.pratikrane.com/api/subscribers?page=1",
+  "from": 1,
+  "last_page": 20,
+  "last_page_url": "https://projects.pratikrane.com/api/subscribers?page=20",
+  "links": [
+    {
+      "url": null,
+      "label": "&laquo; Previous",
+      "active": false
+    },
+    {
+      "url": "https://projects.pratikrane.com/api/subscribers?page=1",
+      "label": "1",
+      "active": true
+    },
+    {
+      "url": "https://projects.pratikrane.com/api/subscribers?page=2",
+      "label": "2",
+      "active": false
+    },
+    {
+      "url": "https://projects.pratikrane.com/api/subscribers?page=3",
+      "label": "3",
+      "active": false
+    },
+    {
+      "url": "https://projects.pratikrane.com/api/subscribers?page=4",
+      "label": "4",
+      "active": false
+    },
+    {
+      "url": "https://projects.pratikrane.com/api/subscribers?page=5",
+      "label": "5",
+      "active": false
+    },
+    {
+      "url": "https://projects.pratikrane.com/api/subscribers?page=6",
+      "label": "6",
+      "active": false
+    },
+    {
+      "url": "https://projects.pratikrane.com/api/subscribers?page=7",
+      "label": "7",
+      "active": false
+    },
+    {
+      "url": "https://projects.pratikrane.com/api/subscribers?page=8",
+      "label": "8",
+      "active": false
+    },
+    {
+      "url": "https://projects.pratikrane.com/api/subscribers?page=9",
+      "label": "9",
+      "active": false
+    },
+    {
+      "url": "https://projects.pratikrane.com/api/subscribers?page=10",
+      "label": "10",
+      "active": false
+    },
+    {
+      "url": "https://projects.pratikrane.com/api/subscribers?page=2",
+      "label": "Next &raquo;",
+      "active": false
+    }
+  ],
+  "next_page_url": "https://projects.pratikrane.com/api/subscribers?page=2",
+  "path": "https://projects.pratikrane.com/api/subscribers",
+  "per_page": 5,
+  "prev_page_url": null,
+  "to": 5,
+  "total": 99
+}
+```
 
-## Laravel Sponsors
+## Create New Subscriber 
+#### [POST] [/subcribers]
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
++ Request (application/json)
+```json
+{
+  "email": "okunde@gmai.com",
+  "name": "Creola Bahringer",
+  "state": "active",
+  "fields": [
+    {
+      "id": 1,
+      "title": "phone",
+      "type": "text",
+      "value": "D8o9b1Mxeb"
+    },
+    {
+      "id": 2,
+      "title": "company",
+      "type": "text",
+      "value": null
+    },
+    {
+      "id": 3,
+      "title": "country",
+      "type": "text",
+      "value": "gQxIQoUVDE"
+    },
+    {
+      "id": 4,
+      "title": "zip",
+      "type": "number",
+      "value": 86630978
+    },
+    {
+      "id": 5,
+      "title": "birthdate",
+      "type": "date",
+      "value": null
+    }
+  ]
+}
+```
 
-### Premium Partners
+## View Subscriber 
+#### [GET] [/subscribers/{subscriber_id}]
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
++ Parameters
+    + subscriber_id (number) - ID of the Subscriber in the form of an integer
 
-## Contributing
+```json
+{
+  "id": 1,
+  "name": "Blair Stoltenberg",
+  "email": "mona.stiedemann@example.net",
+  "state": "active",
+  "created_at": "2022-12-26T09:24:45.000000Z",
+  "fields": [
+    {
+      "id": 3,
+      "title": "country",
+      "type": "text",
+      "pivot": {
+        "subscriber_id": 1,
+        "field_id": 3,
+        "text_value": "qIx3txkVwj",
+        "number_value": null,
+        "date_value": null,
+        "boolean_value": null,
+        "created_at": "2022-12-26T09:24:46.000000Z",
+        "updated_at": "2022-12-26T09:24:46.000000Z"
+      }
+    },
+    {
+      "id": 5,
+      "title": "birthdate",
+      "type": "date",
+      "pivot": {
+        "subscriber_id": 1,
+        "field_id": 5,
+        "text_value": null,
+        "number_value": null,
+        "date_value": "2010-08-12T00:00:00.000000Z",
+        "boolean_value": null,
+        "created_at": "2022-12-26T09:24:46.000000Z",
+        "updated_at": "2022-12-26T09:24:46.000000Z"
+      }
+    }
+  ]
+}
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Update Subscriber Details
+#### [PUT] [/subcribers/{subscriber_id}]
 
-## Code of Conduct
++ Parameters
+    + subscriber_id (number) - ID of the Subscriber in the form of an integer
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
++ Request (application/json)
+```json
+{
+  "email": "okunde@gmail.com",
+  "name": "Creola Bahringer",
+  "state": "active",
+  "fields": [
+    {
+      "id": 1,
+      "title": "phone",
+      "type": "text",
+      "value": "+919838737623"
+    },
+    {
+      "id": 2,
+      "title": "company",
+      "type": "text",
+      "value": null
+    },
+    {
+      "id": 3,
+      "title": "country",
+      "type": "text",
+      "value": "Japan"
+    },
+    {
+      "id": 4,
+      "title": "zip",
+      "type": "number",
+      "value": 4102049
+    },
+    {
+      "id": 5,
+      "title": "birthdate",
+      "type": "date",
+      "value": null
+    }
+  ]
+}
+```
 
-## Security Vulnerabilities
+## Delete Subscriber 
+#### [DELETE] [/subscribers/{subscriber_id}]
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
++ Parameters
+    + subscriber_id (number) - ID of the Subscriber in the form of an integer
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
++ Response 204
